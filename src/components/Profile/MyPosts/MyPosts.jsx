@@ -6,10 +6,9 @@ import {maxLengthCreator, required} from "../../../utils/validator/validators";
 import {Textarea} from "../../common/FormControls/FormControls";
 
 
-
-const MyPosts = (props) => {
+const MyPosts = React.memo(props => {
     let postsElements =
-        props.posts.map( p => <Post message={p.message} likesCount={p.likesCount}/>);
+        props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>);
 
     let onAddPost = (values) => {
         props.addPost(values.newPostText);
@@ -20,11 +19,11 @@ const MyPosts = (props) => {
             <h3>My posts</h3>
             <AddNewPostFormRedux onSubmit={onAddPost}/>
             <div className={s.posts}>
-                { postsElements }
+                {postsElements}
             </div>
         </div>
     )
-}
+});
 
 const maxLength10 = maxLengthCreator(10)
 
