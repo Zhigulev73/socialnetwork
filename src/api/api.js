@@ -47,6 +47,18 @@ export const profileApi = {
         return instance.put(`profile/status`, {
             status
         })
+    },
+    savePhoto(photoFile) {
+        const formData = new FormData()
+        formData.append('image', photoFile)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
+    saveProfile(profile) {
+        return instance.put(`profile`, profile)
     }
 }
 
