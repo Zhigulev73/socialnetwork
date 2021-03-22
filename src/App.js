@@ -17,8 +17,18 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 
 class App extends React.Component {
 
+    catchAllUnhadledErrors = (reason, promise) => {
+        alert('Some error occured')
+        // console.log(promiseRejectionEvent)
+    }
+
     componentDidMount() {
         this.props.initializeApp()
+        window.addEventListener('unhandledrejection', this.catchAllUnhadledErrors )
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnhadledErrors )
     }
 
     render() {
@@ -43,7 +53,7 @@ class App extends React.Component {
                         />
 
                         <Route path='/users'
-                               render={() => <UsersContainer/>}/>
+                               render={() => <UsersContainer pageTitle={'Samurai'}/>}/>
 
                         <Route path='/login'
                                render={() => <Login/>}/>
