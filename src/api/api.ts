@@ -1,19 +1,20 @@
-import axios from 'axios'
-import {UserType} from "../types/types";
+import axios from "axios";
+import {UserType} from '../types/types';
 
 export const instance = axios.create({
     withCredentials: true,
-    baseURL: 'https://social-network.samuraijs.com/api/1.0',
-    headers: {
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+    headers:     {
         "API-KEY": "1afb50aa-aed9-41cd-9a7a-f21dd02cd1bc"
     }
-})
+});
 
 export enum ResultCodesEnum {
     Success = 0,
     Error = 1
 }
-export enum ResultCodeForCaptchaEnum {
+
+export enum ResultCodeForCapcthaEnum {
     CaptchaIsRequired = 10
 }
 
