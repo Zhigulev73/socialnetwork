@@ -1,19 +1,18 @@
-import React, {useState} from 'react';
-import styles from './Paginator.module.css';
-import cn from 'classnames';
+import React, {useState} from 'react'
+import styles from './Paginator.module.css'
+import cn from 'classnames'
 
 type PropsType = {
     totalItemsCount: number
     pageSize: number
-    currentPage: number
-    onPageChanged: (pageNumber: number) => void
+    currentPage?: number
+    onPageChanged?: (pageNumber: number) => void
     portionSize?: number
 }
 
-let Paginator: React.FC<PropsType> = ({totalItemsCount,
-                                      pageSize,
-                                      currentPage,
-                                      onPageChanged,
+let Paginator: React.FC<PropsType> = ({totalItemsCount, pageSize,
+                                      currentPage = 1,
+                                      onPageChanged = x => x,
                                       portionSize = 10}) => {
 
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
@@ -25,17 +24,18 @@ let Paginator: React.FC<PropsType> = ({totalItemsCount,
 
     let portionCount = Math.ceil(pagesCount / portionSize);
     let [portionNumber, setPortionNumber] = useState(1);
+
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
     let rightPortionPageNumber = portionNumber * portionSize;
 
 
-    return <div className={styles.paginator}>
+    return <div className={cn(styles.paginator)}>
         { portionNumber > 1 &&
         <button onClick={() => { setPortionNumber(portionNumber - 1) }}>PREV</button> }
 
-        {pages
-            .filter(p => p >= leftPortionPageNumber && p<=rightPortionPageNumber)
-            .map((p) => {
+            {pages
+                .filter(p => p >= leftPortionPageNumber && p<=rightPortionPageNumber)
+                .map((p) => {
                 return <span className={ cn({
                     [styles.selectedPage]: currentPage === p
                 }, styles.pageNumber) }
@@ -45,7 +45,7 @@ let Paginator: React.FC<PropsType> = ({totalItemsCount,
                              }}>{p}</span>
             })}
         { portionCount > portionNumber &&
-        <button onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</button> }
+            <button onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</button> }
 
 
     </div>

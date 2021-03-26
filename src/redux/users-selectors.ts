@@ -7,8 +7,8 @@ const getUsersSelector = (state: AppStateType) => {
 
 export const getUsers = createSelector(getUsersSelector,
     (users) => {
-        return users.filter(u => true);
-    })
+    return users.filter(u => true);
+})
 
 export const getPageSize = (state: AppStateType) => {
     return state.usersPage.pageSize;
@@ -28,4 +28,7 @@ export const getIsFetching = (state: AppStateType) => {
 
 export const getFollowingInProgress = (state: AppStateType) => {
     return state.usersPage.followingInProgress;
+}
+export const getUsersFilter = (state: AppStateType) => {
+    return state.usersPage.filter;
 }

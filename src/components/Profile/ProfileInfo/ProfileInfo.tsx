@@ -82,8 +82,8 @@ const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEdit
             Object
                 .keys(profile.contacts)
                 .map((key)  => {
-                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
-                })}
+            return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
+        })}
         </div>
     </div>
 }
